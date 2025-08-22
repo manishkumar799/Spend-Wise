@@ -1,4 +1,67 @@
 // entities/expense.js
+
+// {
+//   "name": "Expense",
+//   "type": "object",
+//   "properties": {
+//     "amount": {
+//       "type": "number",
+//       "description": "Expense amount"
+//     },
+//     "description": {
+//       "type": "string",
+//       "description": "Description of the expense"
+//     },
+//     "category": {
+//       "type": "string",
+//       "enum": [
+//         "food_dining",
+//         "transportation",
+//         "entertainment",
+//         "utilities",
+//         "shopping",
+//         "healthcare",
+//         "education",
+//         "travel",
+//         "subscriptions",
+//         "groceries",
+//         "housing",
+//         "insurance",
+//         "other"
+//       ],
+//       "description": "Expense category"
+//     },
+//     "date": {
+//       "type": "string",
+//       "format": "date",
+//       "description": "Date of expense"
+//     },
+//     "payment_method": {
+//       "type": "string",
+//       "enum": [
+//         "cash",
+//         "credit_card",
+//         "debit_card",
+//         "bank_transfer",
+//         "digital_wallet"
+//       ],
+//       "description": "Payment method used"
+//     },
+//     "tags": {
+//       "type": "array",
+//       "items": {
+//         "type": "string"
+//       },
+//       "description": "Optional tags for the expense"
+//     }
+//   },
+//   "required": [
+//     "amount",
+//     "description",
+//     "category",
+//     "date"
+//   ]
+// }
 export default class Expense {
   static STORAGE_KEY = "expenses";
 

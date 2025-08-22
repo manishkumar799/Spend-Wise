@@ -8,7 +8,8 @@ import {
   Settings,
   TrendingUp,
   Wallet,
-  ListChecks, // Added ListChecks icon
+  ListChecks,
+  Target, // Added ListChecks icon
 } from "lucide-react";
 import {
   Sidebar,
@@ -40,6 +41,11 @@ const navigationItems = [
     title: "Add Expense",
     url: createPageUrl("AddExpense"),
     icon: Plus,
+  },
+  {
+    title: "Budget Tracker", // New navigation item for Budget
+    url: createPageUrl("Budgets"), // URL for Budget page
+    icon: Target, // Icon for Budget Tracker
   },
   {
     title: "Reports",

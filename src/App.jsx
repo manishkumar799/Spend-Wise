@@ -7,6 +7,7 @@ import AddExpense from "./pages/AddExpense";
 import Reports from "./pages/Reports";
 import ExpenseDetailsPage from "./pages/ExpenseDetails";
 import ExpensesPage from "./pages/Expenses";
+import BudgetsPage from "./pages/Budgets";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Reports" element={<Reports />} />
           <Route path="/ExpenseDetails" element={<ExpenseDetailsPage />} />
           <Route path="/Expenses" element={<ExpensesPage />} />
+          <Route path="/Budgets" element={<BudgetsPage />} />
         </Route>
       </Routes>
       <Toaster />

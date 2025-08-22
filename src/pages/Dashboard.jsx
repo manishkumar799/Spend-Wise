@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from "react";
 import Expense from "../entities/expense";
+import Budget from "../entities/budget";
 import { format, startOfMonth, endOfMonth, subMonths } from "date-fns";
 import { motion } from "framer-motion";
 
 import SpendingOverview from "../components/dashboard/SpendingOverview";
 import CategoryBreakdown from "../components/dashboard/CategoryBreakdown";
 import RecentExpenses from "../components/dashboard/RecentExpenses";
+import BudgetOverview from "../components/budget/BudgetOverview";
 
 export default function Dashboard() {
   const [expenses, setExpenses] = useState([]);
+  const [budgets, setBudgets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    loadExpenses();
+    loadData();
   }, []);
 
-  const loadExpenses = async () => {
+  const loadData = async () => {
     setIsLoading(true);
-    const data = await Expense.getAll("-date", 100);
-    setExpenses(data);
+    try {
+      const [expenseData, budgetData] = await Promise.all([
+        Expense.getAll("-date", 100),
+        Budget.getAll("-month"),
+      ]);
+      setExpenses(expenseData);
+      setBudgets(budgetData);
+    } catch (error) {
+      console.error("Error loading dashboard data:", error);
+    }
     setIsLoading(false);
   };
 
@@ -53,6 +64,19 @@ export default function Dashboard() {
   const avgDaily =
     thisMonthExpenses.length > 0 ? totalThisMonth / new Date().getDate() : 0;
 
+  // Calculate current month spending by category for budget tracking
+  const currentMonthSpending = {};
+  thisMonthExpenses.forEach((expense) => {
+    currentMonthSpending[expense.category] =
+      (currentMonthSpending[expense.category] || 0) + expense.amount;
+  });
+
+  // Get current month budgets
+  const currentMonthString = currentMonth.toISOString().slice(0, 7) + "-01";
+  const currentMonthBudgets = budgets.filter(
+    (budget) => budget.month === currentMonthString
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
@@ -83,6 +107,15 @@ export default function Dashboard() {
             </div>
 
             <div className="lg:col-span-1">
+              <BudgetOverview
+                budgets={currentMonthBudgets}
+                currentSpending={currentMonthSpending}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
               <RecentExpenses expenses={expenses} isLoading={isLoading} />
             </div>
           </div>
