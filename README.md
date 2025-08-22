@@ -1,6 +1,6 @@
-# Spend Wise
+# Personal Expense
 
-Spend Wise is a personal finance management application designed to help users track expenses, manage budgets, and gain insights into their spending habits.
+Personal Expense is a personal finance management application designed to help users track expenses, manage budgets, and gain insights into their spending habits.
 
 ## Features
 
