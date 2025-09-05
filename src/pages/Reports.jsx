@@ -11,7 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Download, Filter, BarChart3 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import createPageUrl from "../utils/createPageUrl";
 import { motion } from "framer-motion";
 import { format, startOfMonth, endOfMonth, subMonths } from "date-fns";
